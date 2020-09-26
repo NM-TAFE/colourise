@@ -1,5 +1,27 @@
+"""This module contains a few functions that allow operations on colours.
+For instance, :meth:`hsl2rbg` converts HSL values (hue, saturation, and
+lightness) to RGB values (Red, Green, Blue).
+
+:meth:`rgb2hsl` performs the reverse operation.
+
+:meth:`complement_hsl` calculates the complement of a colour when the
+input is provided as a HSL colour. Absolutely no validation of the input
+is done by this function, so use it with care.
+
+:meth:`complement_rgb` calculates the complement of a colour when the
+input is provided as an RGB colour. It uses the aforementioned
+:meth:`complement_hsl` for the actual calculation. This method, however,
+does provide validation of the input.
+"""
+
+
 def hsl2rgb(h=0.0, s=0.0, l=0.0):
     """Convert any HSL value to RGB.
+
+    By "any" value we mean:
+        0 <= h <= 360, 0 <= s <= 1, and 0 <= l <= 1
+
+    A ValueError is raised if this precondition is not met for the input.
 
     :param h: Hue
     :param s: Saturation
@@ -17,6 +39,11 @@ def hsl2rgb(h=0.0, s=0.0, l=0.0):
 def rgb2hsl(r=0, g=0, b=0):
     """Convert RGB colours to HSL.
 
+    The input must follow these conditions:
+        0 <= r <= 255, 0 <= g <= 255, and 0 <= b <= 255
+
+    A ValueError is raised if these conditions are not met.
+
     :param r: Red as web colour (0..255)
     :param g: Green as web colour (0..255)
     :param b: Blue as web colour (0..255)
@@ -30,7 +57,8 @@ def rgb2hsl(r=0, g=0, b=0):
 
 
 def _norm_hsl2rgb(h, s, l):
-    """Convert HSL to RGB colours.
+    """Convert HSL to RGB colours. This function assumes the input has
+    been sanitised and does no validation on the input parameters.
 
     This calculation has been adapted from Wikipedia:
     https://en.wikipedia.org/wiki/HSL_and_HSV#To_RGB
@@ -62,7 +90,8 @@ def _norm_hsl2rgb(h, s, l):
 
 
 def _norm_rgb2hsl(r, g, b):
-    """Convert normalised RGB colours to HSL.
+    """Convert normalised RGB colours to HSL. This function assumes the input
+    has been sanitised and does no validation on the input parameters.
 
     This calculation has been adapted from Wikipedia:
     https://en.wikipedia.org/wiki/HSL_and_HSV#From_RGB
@@ -114,13 +143,3 @@ def complement_rgb(r=0, g=0, b=0):
     h, s, l = rgb2hsl(r, g, b)
     h, s, l = complement_hsl(h, s, l)
     return hsl2rgb(h, s, l)
-
-
-def main():
-    h, s, l = 240, 1, 0.5
-    r, g, b = hsl2rgb(h, s, l)
-    print(r, g, b)
-
-
-if __name__ == '__main__':
-    main()
