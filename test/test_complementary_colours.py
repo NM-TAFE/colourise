@@ -1,5 +1,5 @@
 import unittest
-from src.main import complement_rgb
+from colourise.main import complement_rgb
 
 
 class TestComplementaryColours(unittest.TestCase):

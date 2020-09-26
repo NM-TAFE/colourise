@@ -1,5 +1,5 @@
 import unittest
-from src.main import rgb2hsl
+from colourise.main import rgb2hsl
 
 
 class TestRGBtoHSL(unittest.TestCase):
