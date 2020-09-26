@@ -32,6 +32,9 @@ def rgb2hsl(r=0, g=0, b=0):
 def _norm_hsl2rgb(h, s, l):
     """Convert HSL to RGB colours.
 
+    This calculation has been adapted from Wikipedia:
+    https://en.wikipedia.org/wiki/HSL_and_HSV#To_RGB
+
     :param h: Hue
     :param s: Saturation
     :param l: Lightness
