@@ -5,7 +5,7 @@ with open('README.md', 'r') as fh:
 
 setuptools.setup(
     name='colourise',
-    version='0.0.1',
+    version='0.0.2',
     author='Sander Huijsen',
     author_email='sander.huijsen@nmtafe.wa.edu.au',
     description='Package performing colour conversions',
