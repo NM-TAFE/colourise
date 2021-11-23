@@ -5,10 +5,8 @@ from colourise import hsl2rgb
 class TestHSLtoRGB(unittest.TestCase):
     def test_primary_colour_red(self):
         h, s, l = 0, 1, 0.5
-        r, g, b = hsl2rgb(h, s, l)
-        self.assertEqual(r, 255)
-        self.assertEqual(g, 0)
-        self.assertEqual(b, 0)
+        rgb = hsl2rgb(h, s, l)
+        self.assertEqual(rgb, (255, 0, 0))
 
     def test_primary_colour_green(self):
         h, s, l = 120, 1, 0.5
